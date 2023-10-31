@@ -1,0 +1,57 @@
+{
+  "name": "qapp-hermes",
+  "version": "1.0.0",
+  "description": "Ticket microservice",
+  "main": "index.ts",
+  "nodemonConfig": {
+    "ignore": [
+      "**/*.test.ts",
+      "**/*.spec.ts",
+      ".git",
+      "node_modules"
+    ],
+    "watch": [
+      "src"
+    ],
+    "exec": "node -r tsconfig-paths/register -r ts-node/register ./src/index.ts",
+    "ext": "ts, js"
+  },
+  "scripts": {
+    "build": "npx tsc && tsc-alias",
+    "start": "node dist/index.js",
+    "generate": "prisma generate && buf generate --path proto/com/qapp/hermes",
+    "dev": "cross-env NODE_ENV=development nodemon"
+  },
+  "author": "UUBoys",
+  "license": "ISC",
+  "dependencies": {
+    "@bufbuild/buf": "^1.27.1",
+    "@bufbuild/protobuf": "^1.4.0",
+    "@bufbuild/protoc-gen-es": "^1.4.0",
+    "@connectrpc/connect": "^1.1.2",
+    "@connectrpc/connect-fastify": "^1.1.2",
+    "@connectrpc/connect-node": "^1.1.2",
+    "@connectrpc/protoc-gen-connect-es": "^1.1.2",
+    "@prisma/client": "^5.4.2",
+    "dotenv": "^16.3.1",
+    "fastify": "^4.24.3",
+    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1",
+    "winston": "^3.11.0",
+    "winston-console-format": "^1.0.8"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.7.5",
+    "cross-env": "7.0.3",
+    "eslint": "^8.51.0",
+    "eslint-config-standard-with-typescript": "^39.1.1",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-n": "^16.2.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "prisma": "^5.4.2",
+    "ts-node-dev": "^2.0.0",
+    "tsc-alias": "^1.8.8",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.2.2"
+  }
+}

@@ -1,0 +1,31 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["multiSchema"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url = env("DATABASE_URL")
+  relationMode = "prisma"
+  schemas = ["qapp_hermes"]
+}
+
+model Credits {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @unique
+  amount    Int
+  createdAt DateTime @default(now())
+  @@schema("qapp_hermes")
+}
+
+model CreditHistory {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  changedAmount    String
+  origin    String
+  changedAt DateTime @default(now())
+  @@schema("qapp_hermes")
+}
