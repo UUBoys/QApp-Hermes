@@ -1,4 +1,4 @@
-import { createLogger, format, transports } from 'winston';
+import { createLogger, format, level, transports } from 'winston';
 import { consoleFormat } from 'winston-console-format';
 
 const levels = {
@@ -14,7 +14,6 @@ const levels = {
 
 // Base logger configuration
 const logger = createLogger({
-    levels,
     level: 'silly', // top-level of severity
     format: format.combine(
         format.timestamp({ format: 'DD.MM.YYYY HH:mm:ss.SSS A' }),

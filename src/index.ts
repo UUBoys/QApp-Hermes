@@ -12,8 +12,7 @@ async function main() {
   const server = fastify(
     {
       http2: true,
-      // @ts-ignore
-      logger: logger,
+      logger: process.env.NODE_ENV === 'development'
     }
   );
   await server.register(fastifyConnectPlugin, {

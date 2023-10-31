@@ -3,12 +3,42 @@
 /* eslint-disable */
 // @ts-nocheck
 
+import { CreditsOperationResponse, CreditStatusResponse, GetCreditsRequest, PurchaseRequest, TopupCreditsRequest } from "./hermes_pb";
+import { MethodKind } from "@bufbuild/protobuf";
+
 /**
- * @generated from service com.qapp.hermes.Hermes
+ * @generated from service com.qapp.hermes.CreditService
  */
-export const Hermes = {
-  typeName: "com.qapp.hermes.Hermes",
+export const CreditService = {
+  typeName: "com.qapp.hermes.CreditService",
   methods: {
+    /**
+     * @generated from rpc com.qapp.hermes.CreditService.TopupCredits
+     */
+    topupCredits: {
+      name: "TopupCredits",
+      I: TopupCreditsRequest,
+      O: CreditsOperationResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc com.qapp.hermes.CreditService.GetCredits
+     */
+    getCredits: {
+      name: "GetCredits",
+      I: GetCreditsRequest,
+      O: CreditStatusResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc com.qapp.hermes.CreditService.Purchase
+     */
+    purchase: {
+      name: "Purchase",
+      I: PurchaseRequest,
+      O: CreditsOperationResponse,
+      kind: MethodKind.Unary,
+    },
   }
 } as const;
 

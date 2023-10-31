@@ -18,6 +18,7 @@ model Credits {
   userId    Int      @unique
   amount    Int
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   @@schema("qapp_hermes")
 }
 
