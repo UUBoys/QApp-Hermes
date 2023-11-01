@@ -5,8 +5,16 @@ import { fastify } from "fastify";
 import { fastifyConnectPlugin } from "@connectrpc/connect-fastify";
 import routes from "./grpc/connect";
 
+import express from 'express';
+
 //For env File
 dotenv.config();
+
+// For Azure
+const app = express();
+app.listen(8080, () => {
+  logger.info(`Normie server running at 8080`);
+});
 
 async function main() {
   const server = fastify(
