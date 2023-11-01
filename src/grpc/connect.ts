@@ -59,7 +59,7 @@ export default (router: ConnectRouter) => {
         async getCredits(request) {
             const { userId } = request;
 
-            const credits = await prisma.credits.findFirst({
+            const credits = await prisma.credits.findUniqueOrThrow({
                 where: {
                     userId,
                 },
@@ -80,7 +80,7 @@ export default (router: ConnectRouter) => {
 
             return {
                 userId,
-                amount: credits?.amount || 0,
+                balance: credits.amount ?? 0
             }
         },
         async purchase(request) {
