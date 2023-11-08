@@ -175,6 +175,7 @@ export default (router: ConnectRouter) => {
           id: ticket.id,
           eventId: ticket.eventId,
           ticket_name: ticket.name,
+          cost: ticket.cost,
           quantity: ticket.quantity,
         })),
       };
