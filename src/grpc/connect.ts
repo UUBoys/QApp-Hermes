@@ -154,6 +154,12 @@ export default (router: ConnectRouter) => {
         userId,
         oldBalance: old.amount,
         newBalance: updated.amount,
+        ticket: {
+          id: ticketToPurchase.id,
+          eventId: ticketToPurchase.eventId,
+          ticket_name: ticketToPurchase.name,
+          cost: ticketToPurchase.cost,
+        },
       };
     },
     async getEventAvailableTickets({ eventId }) {

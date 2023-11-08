@@ -100,7 +100,12 @@ export class EventAvailableTickets extends Message<EventAvailableTickets> {
   ticketName = "";
 
   /**
-   * @generated from field: int32 quantity = 4;
+   * @generated from field: float price = 4;
+   */
+  price = 0;
+
+  /**
+   * @generated from field: int32 quantity = 5;
    */
   quantity = 0;
 
@@ -115,7 +120,8 @@ export class EventAvailableTickets extends Message<EventAvailableTickets> {
     { no: 1, name: "id", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 2, name: "event_id", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 3, name: "ticket_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "quantity", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 4, name: "price", kind: "scalar", T: 2 /* ScalarType.FLOAT */ },
+    { no: 5, name: "quantity", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventAvailableTickets {
@@ -197,6 +203,11 @@ export class CreditsOperationResponse extends Message<CreditsOperationResponse> 
    */
   newBalance = 0;
 
+  /**
+   * @generated from field: com.qapp.hermes.EventAvailableTickets ticket = 4;
+   */
+  ticket?: EventAvailableTickets;
+
   constructor(data?: PartialMessage<CreditsOperationResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -208,6 +219,7 @@ export class CreditsOperationResponse extends Message<CreditsOperationResponse> 
     { no: 1, name: "user_id", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 2, name: "old_balance", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 3, name: "new_balance", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 4, name: "ticket", kind: "message", T: EventAvailableTickets },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreditsOperationResponse {
