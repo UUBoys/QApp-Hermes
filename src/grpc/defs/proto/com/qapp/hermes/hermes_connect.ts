@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CreditsOperationResponse, CreditStatusResponse, GetCreditsRequest, GetEventAvailableTicketsRequest, GetEventAvailableTicketsResponse, PurchaseRequest, TopupCreditsRequest } from "./hermes_pb.js";
+import { CreditsOperationResponse, CreditStatusResponse, GetCreditsRequest, GetEventAvailableTicketsRequest, GetEventAvailableTicketsResponse, PurchaseRequest, PurchaseTicketResponse, TopupCreditsRequest } from "./hermes_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -36,7 +36,7 @@ export const CreditService = {
     purchase: {
       name: "Purchase",
       I: PurchaseRequest,
-      O: CreditsOperationResponse,
+      O: PurchaseTicketResponse,
       kind: MethodKind.Unary,
     },
     /**

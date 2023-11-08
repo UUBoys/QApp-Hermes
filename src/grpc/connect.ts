@@ -151,10 +151,12 @@ export default (router: ConnectRouter) => {
       });
 
       return {
-        userId,
-        oldBalance: old.amount,
-        newBalance: updated.amount,
-        ticket: {
+        creditOperation: {
+          userId,
+          oldBalance: old.amount,
+          newBalance: updated.amount,
+        },
+        Ticket: {
           id: ticketToPurchase.id,
           eventId: ticketToPurchase.eventId,
           ticket_name: ticketToPurchase.name,

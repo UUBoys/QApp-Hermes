@@ -203,11 +203,6 @@ export class CreditsOperationResponse extends Message<CreditsOperationResponse> 
    */
   newBalance = 0;
 
-  /**
-   * @generated from field: com.qapp.hermes.EventAvailableTickets ticket = 4;
-   */
-  ticket?: EventAvailableTickets;
-
   constructor(data?: PartialMessage<CreditsOperationResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -219,7 +214,6 @@ export class CreditsOperationResponse extends Message<CreditsOperationResponse> 
     { no: 1, name: "user_id", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 2, name: "old_balance", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 3, name: "new_balance", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 4, name: "ticket", kind: "message", T: EventAvailableTickets },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreditsOperationResponse {
@@ -236,6 +230,49 @@ export class CreditsOperationResponse extends Message<CreditsOperationResponse> 
 
   static equals(a: CreditsOperationResponse | PlainMessage<CreditsOperationResponse> | undefined, b: CreditsOperationResponse | PlainMessage<CreditsOperationResponse> | undefined): boolean {
     return proto3.util.equals(CreditsOperationResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message com.qapp.hermes.PurchaseTicketResponse
+ */
+export class PurchaseTicketResponse extends Message<PurchaseTicketResponse> {
+  /**
+   * @generated from field: com.qapp.hermes.CreditsOperationResponse creditOperation = 1;
+   */
+  creditOperation?: CreditsOperationResponse;
+
+  /**
+   * @generated from field: com.qapp.hermes.EventAvailableTickets Ticket = 2;
+   */
+  Ticket?: EventAvailableTickets;
+
+  constructor(data?: PartialMessage<PurchaseTicketResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "com.qapp.hermes.PurchaseTicketResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "creditOperation", kind: "message", T: CreditsOperationResponse },
+    { no: 2, name: "Ticket", kind: "message", T: EventAvailableTickets },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PurchaseTicketResponse {
+    return new PurchaseTicketResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PurchaseTicketResponse {
+    return new PurchaseTicketResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PurchaseTicketResponse {
+    return new PurchaseTicketResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: PurchaseTicketResponse | PlainMessage<PurchaseTicketResponse> | undefined, b: PurchaseTicketResponse | PlainMessage<PurchaseTicketResponse> | undefined): boolean {
+    return proto3.util.equals(PurchaseTicketResponse, a, b);
   }
 }
 
