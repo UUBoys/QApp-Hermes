@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CreditsOperationResponse, CreditStatusResponse, GetCreditsRequest, PurchaseRequest, TopupCreditsRequest } from "./hermes_pb";
+import { CreditsOperationResponse, CreditStatusResponse, GetCreditsRequest, GetEventAvailableTicketsRequest, GetEventAvailableTicketsResponse, PurchaseRequest, TopupCreditsRequest } from "./hermes_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -37,6 +37,15 @@ export const CreditService = {
       name: "Purchase",
       I: PurchaseRequest,
       O: CreditsOperationResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc com.qapp.hermes.CreditService.GetEventAvailableTickets
+     */
+    getEventAvailableTickets: {
+      name: "GetEventAvailableTickets",
+      I: GetEventAvailableTicketsRequest,
+      O: GetEventAvailableTicketsResponse,
       kind: MethodKind.Unary,
     },
   }

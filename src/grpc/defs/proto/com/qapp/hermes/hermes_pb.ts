@@ -7,6 +7,135 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3 } from "@bufbuild/protobuf";
 
 /**
+ * @generated from message com.qapp.hermes.GetEventAvailableTicketsResponse
+ */
+export class GetEventAvailableTicketsResponse extends Message<GetEventAvailableTicketsResponse> {
+  /**
+   * @generated from field: repeated com.qapp.hermes.EventAvailableTickets tickets = 1;
+   */
+  tickets: EventAvailableTickets[] = [];
+
+  constructor(data?: PartialMessage<GetEventAvailableTicketsResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "com.qapp.hermes.GetEventAvailableTicketsResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "tickets", kind: "message", T: EventAvailableTickets, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetEventAvailableTicketsResponse {
+    return new GetEventAvailableTicketsResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetEventAvailableTicketsResponse {
+    return new GetEventAvailableTicketsResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetEventAvailableTicketsResponse {
+    return new GetEventAvailableTicketsResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetEventAvailableTicketsResponse | PlainMessage<GetEventAvailableTicketsResponse> | undefined, b: GetEventAvailableTicketsResponse | PlainMessage<GetEventAvailableTicketsResponse> | undefined): boolean {
+    return proto3.util.equals(GetEventAvailableTicketsResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message com.qapp.hermes.GetEventAvailableTicketsRequest
+ */
+export class GetEventAvailableTicketsRequest extends Message<GetEventAvailableTicketsRequest> {
+  /**
+   * @generated from field: int32 event_id = 2;
+   */
+  eventId = 0;
+
+  constructor(data?: PartialMessage<GetEventAvailableTicketsRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "com.qapp.hermes.GetEventAvailableTicketsRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 2, name: "event_id", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetEventAvailableTicketsRequest {
+    return new GetEventAvailableTicketsRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetEventAvailableTicketsRequest {
+    return new GetEventAvailableTicketsRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetEventAvailableTicketsRequest {
+    return new GetEventAvailableTicketsRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetEventAvailableTicketsRequest | PlainMessage<GetEventAvailableTicketsRequest> | undefined, b: GetEventAvailableTicketsRequest | PlainMessage<GetEventAvailableTicketsRequest> | undefined): boolean {
+    return proto3.util.equals(GetEventAvailableTicketsRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message com.qapp.hermes.EventAvailableTickets
+ */
+export class EventAvailableTickets extends Message<EventAvailableTickets> {
+  /**
+   * @generated from field: int32 id = 1;
+   */
+  id = 0;
+
+  /**
+   * @generated from field: int32 event_id = 2;
+   */
+  eventId = 0;
+
+  /**
+   * @generated from field: string ticket_name = 3;
+   */
+  ticketName = "";
+
+  /**
+   * @generated from field: int32 quantity = 4;
+   */
+  quantity = 0;
+
+  constructor(data?: PartialMessage<EventAvailableTickets>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "com.qapp.hermes.EventAvailableTickets";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "id", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "event_id", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 3, name: "ticket_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "quantity", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventAvailableTickets {
+    return new EventAvailableTickets().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EventAvailableTickets {
+    return new EventAvailableTickets().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EventAvailableTickets {
+    return new EventAvailableTickets().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: EventAvailableTickets | PlainMessage<EventAvailableTickets> | undefined, b: EventAvailableTickets | PlainMessage<EventAvailableTickets> | undefined): boolean {
+    return proto3.util.equals(EventAvailableTickets, a, b);
+  }
+}
+
+/**
  * @generated from message com.qapp.hermes.TopupCreditsRequest
  */
 export class TopupCreditsRequest extends Message<TopupCreditsRequest> {
@@ -183,14 +312,19 @@ export class CreditStatusResponse extends Message<CreditStatusResponse> {
  */
 export class PurchaseRequest extends Message<PurchaseRequest> {
   /**
-   * @generated from field: int32 user_id = 1;
+   * @generated from field: int32 event_id = 1;
+   */
+  eventId = 0;
+
+  /**
+   * @generated from field: int32 user_id = 2;
    */
   userId = 0;
 
   /**
-   * @generated from field: int32 amount = 2;
+   * @generated from field: int32 ticket_id = 3;
    */
-  amount = 0;
+  ticketId = 0;
 
   constructor(data?: PartialMessage<PurchaseRequest>) {
     super();
@@ -200,8 +334,9 @@ export class PurchaseRequest extends Message<PurchaseRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "com.qapp.hermes.PurchaseRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "user_id", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 2, name: "amount", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 1, name: "event_id", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "user_id", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 3, name: "ticket_id", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PurchaseRequest {
