@@ -15,7 +15,7 @@ datasource db {
 
 model AvailableTickets {
   id        Int      @id @default(autoincrement())
-  eventId   Int      @unique
+  eventId   String      @unique
   name      String
   quantity  Int
   cost      Float
