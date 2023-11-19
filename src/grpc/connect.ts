@@ -15,6 +15,10 @@ export default (router: ConnectRouter) => {
         async topupCredits(request) {
             const { amount, userId } = request;
 
+            if(amount <= 0) {
+                throw new ConnectError("Amount must be positive", Code.InvalidArgument);
+            }
+
             const old_amount = await prisma.credits.findFirst({
                 where: {
                     userId,
