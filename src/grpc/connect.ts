@@ -15,9 +15,9 @@ export default (router: ConnectRouter) => {
     async topupCredits(request) {
       const { amount, userId } = request;
 
-            if(amount <= 0) {
-                throw new ConnectError("Amount must be positive", Code.InvalidArgument);
-            }
+      if(amount <= 0) {
+          throw new ConnectError("Amount must be positive", Code.InvalidArgument);
+      }
 
       const old_amount = await prisma.credits.findFirst({
         where: {
@@ -184,6 +184,19 @@ export default (router: ConnectRouter) => {
 
       return {
         tickets: eventAvailableTickets.map((ticket) => ({
+          id: ticket.id,
+          eventId: ticket.eventId,
+          ticket_name: ticket.name,
+          cost: ticket.cost,
+          quantity: ticket.quantity,
+        })),
+      };
+    },
+    async getAllTickets() {
+      const tickets = await prisma.availableTickets.findMany();
+      
+      return {
+        tickets: tickets.map((ticket) => ({
           id: ticket.id,
           eventId: ticket.eventId,
           ticket_name: ticket.name,
