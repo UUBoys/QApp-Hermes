@@ -154,6 +154,26 @@ export default (router: ConnectRouter) => {
         },
       });
 
+      await prisma.purchasedTickets.upsert({
+        where: {
+          userId_eventId: {
+            userId,
+            eventId,
+          },
+        },
+        update: {
+          quantity: {
+            increment: 1,
+          },
+        },
+        create: {
+          eventId,
+          userId,
+          quantity: 1,
+          ticketId,
+        },
+      });
+
       return {
         creditOperation: {
           userId,
@@ -202,6 +222,37 @@ export default (router: ConnectRouter) => {
           ticket_name: ticket.name,
           cost: ticket.cost,
           quantity: ticket.quantity,
+        })),
+      };
+    },
+    async getUserTickets({ userId }) {
+      const userTickets = await prisma.purchasedTickets.findMany({
+        where: {
+          userId,
+        },
+        select: {
+          userId: true,
+          eventId: true,
+          quantity: true,
+          ticket: {
+            select: {
+              name: true,
+              cost: true,
+            },
+          },
+        }
+      });
+
+      if (!userTickets) {
+        throw new ConnectError("UserTickets not found", Code.NotFound);
+      }
+
+      return {
+        tickets: userTickets.map((ticket) => ({
+          user_id: ticket.userId,
+          eventId: ticket.eventId,
+          ticket_name: ticket.ticket.name,
+          cost: ticket.ticket.cost,
         })),
       };
     },

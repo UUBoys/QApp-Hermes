@@ -9,7 +9,6 @@ generator client {
 datasource db {
   provider     = "postgresql"
   url          = env("DATABASE_URL")
-  relationMode = "prisma"
   schemas      = ["qapp_hermes"]
 }
 
@@ -21,7 +20,21 @@ model AvailableTickets {
   cost      Float
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  purchasedTickets PurchasedTickets[]
 
+  @@schema("qapp_hermes")
+}
+
+model PurchasedTickets {
+  userId    Int
+  eventId   String
+  quantity  Int
+  ticketId  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ticket    AvailableTickets @relation(fields: [ticketId], references: [id])
+
+  @@id([userId, eventId])
   @@schema("qapp_hermes")
 }
 

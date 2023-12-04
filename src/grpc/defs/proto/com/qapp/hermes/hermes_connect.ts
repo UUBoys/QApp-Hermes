@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CreateEventTicketsRequest, CreateEventTicketsResponse, CreditsOperationResponse, CreditStatusResponse, GetAllTIcketsRequest, GetAllTicketsResponse, GetCreditsRequest, GetEventAvailableTicketsRequest, GetEventAvailableTicketsResponse, PurchaseRequest, PurchaseTicketResponse, TopupCreditsRequest } from "./hermes_pb.js";
+import { CreateEventTicketsRequest, CreateEventTicketsResponse, CreditsOperationResponse, CreditStatusResponse, GetAllTIcketsRequest, GetAllTicketsResponse, GetCreditsRequest, GetEventAvailableTicketsRequest, GetEventAvailableTicketsResponse, GetUserTicketsRequest, GetUserTicketsResponse, PurchaseRequest, PurchaseTicketResponse, TopupCreditsRequest } from "./hermes_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -64,6 +64,15 @@ export const CreditService = {
       name: "GetAllTickets",
       I: GetAllTIcketsRequest,
       O: GetAllTicketsResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc com.qapp.hermes.CreditService.GetUserTickets
+     */
+    getUserTickets: {
+      name: "GetUserTickets",
+      I: GetUserTicketsRequest,
+      O: GetUserTicketsResponse,
       kind: MethodKind.Unary,
     },
   }
