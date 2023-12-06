@@ -154,7 +154,7 @@ export default (router: ConnectRouter) => {
         },
       });
 
-      await prisma.purchasedTickets.upsert({
+      const upserted = await prisma.purchasedTickets.upsert({
         where: {
           userId_eventId: {
             userId,
@@ -183,8 +183,9 @@ export default (router: ConnectRouter) => {
         Ticket: {
           id: ticketToPurchase.id,
           eventId: ticketToPurchase.eventId,
-          ticket_name: ticketToPurchase.name,
-          cost: ticketToPurchase.cost,
+          ticketName: ticketToPurchase.name,
+          price: ticketToPurchase.cost,
+          quantity: upserted.quantity,
         },
       };
     },
@@ -206,8 +207,8 @@ export default (router: ConnectRouter) => {
         tickets: eventAvailableTickets.map((ticket) => ({
           id: ticket.id,
           eventId: ticket.eventId,
-          ticket_name: ticket.name,
-          cost: ticket.cost,
+          ticketName: ticket.name,
+          price: ticket.cost,
           quantity: ticket.quantity,
         })),
       };
@@ -219,8 +220,8 @@ export default (router: ConnectRouter) => {
         tickets: tickets.map((ticket) => ({
           id: ticket.id,
           eventId: ticket.eventId,
-          ticket_name: ticket.name,
-          cost: ticket.cost,
+          ticketName: ticket.name,
+          price: ticket.cost,
           quantity: ticket.quantity,
         })),
       };
@@ -231,6 +232,7 @@ export default (router: ConnectRouter) => {
           userId,
         },
         select: {
+          ticketId: true,
           userId: true,
           eventId: true,
           quantity: true,
@@ -249,10 +251,11 @@ export default (router: ConnectRouter) => {
 
       return {
         tickets: userTickets.map((ticket) => ({
-          user_id: ticket.userId,
+          id: ticket.ticketId,
           eventId: ticket.eventId,
-          ticket_name: ticket.ticket.name,
-          cost: ticket.ticket.cost,
+          ticketName: ticket.ticket.name,
+          price: ticket.ticket.cost,
+          quantity: ticket.quantity,
         })),
       };
     },
