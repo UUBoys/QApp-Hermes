@@ -240,6 +240,7 @@ export default (router: ConnectRouter) => {
             select: {
               name: true,
               cost: true,
+              id: true,
             },
           },
         }
@@ -251,11 +252,12 @@ export default (router: ConnectRouter) => {
 
       return {
         tickets: userTickets.map((ticket) => ({
-          id: ticket.ticketId,
+          userId: ticket.userId,
           eventId: ticket.eventId,
+          ticketId: ticket.ticket.id,
           ticketName: ticket.ticket.name,
           price: ticket.ticket.cost,
-          quantity: ticket.quantity,
+          boughtQuantity: ticket.quantity,
         })),
       };
     },
