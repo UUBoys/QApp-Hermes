@@ -219,8 +219,8 @@ export default (router: ConnectRouter) => {
         tickets: tickets.map((ticket) => ({
           id: ticket.id,
           eventId: ticket.eventId,
-          ticket_name: ticket.name,
-          cost: ticket.cost,
+          ticketName: ticket.name,
+          price: ticket.cost,
           quantity: ticket.quantity,
         })),
       };
@@ -238,6 +238,7 @@ export default (router: ConnectRouter) => {
             select: {
               name: true,
               cost: true,
+              id: true,
             },
           },
         }
@@ -249,10 +250,12 @@ export default (router: ConnectRouter) => {
 
       return {
         tickets: userTickets.map((ticket) => ({
-          user_id: ticket.userId,
+          userId: ticket.userId,
           eventId: ticket.eventId,
-          ticket_name: ticket.ticket.name,
-          cost: ticket.ticket.cost,
+          ticketId: ticket.ticket.id,
+          ticketName: ticket.ticket.name,
+          price: ticket.ticket.cost,
+          boughtQuantity: ticket.quantity,
         })),
       };
     },
