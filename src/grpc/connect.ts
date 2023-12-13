@@ -174,6 +174,17 @@ export default (router: ConnectRouter) => {
         },
       });
 
+      await prisma.availableTickets.update({
+        where: {
+          id: ticketId,
+        },
+        data: {
+          quantity: {
+            decrement: 1,
+          },
+        },
+      });
+
       return {
         creditOperation: {
           userId,
