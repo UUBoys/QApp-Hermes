@@ -276,5 +276,16 @@ export default (router: ConnectRouter) => {
         ticketId: createdTickets.id,
       };
     },
+    async removeEventTickets({ eventId }) {
+      await prisma.availableTickets.deleteMany({
+        where: {
+          eventId,
+        },
+      });
+
+      return {
+        success: true,
+      };
+    }
   });
 };

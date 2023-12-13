@@ -7,6 +7,80 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3 } from "@bufbuild/protobuf";
 
 /**
+ * @generated from message com.qapp.hermes.RemoveEventTicketsRequest
+ */
+export class RemoveEventTicketsRequest extends Message<RemoveEventTicketsRequest> {
+  /**
+   * @generated from field: string event_id = 1;
+   */
+  eventId = "";
+
+  constructor(data?: PartialMessage<RemoveEventTicketsRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "com.qapp.hermes.RemoveEventTicketsRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "event_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RemoveEventTicketsRequest {
+    return new RemoveEventTicketsRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RemoveEventTicketsRequest {
+    return new RemoveEventTicketsRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RemoveEventTicketsRequest {
+    return new RemoveEventTicketsRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: RemoveEventTicketsRequest | PlainMessage<RemoveEventTicketsRequest> | undefined, b: RemoveEventTicketsRequest | PlainMessage<RemoveEventTicketsRequest> | undefined): boolean {
+    return proto3.util.equals(RemoveEventTicketsRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message com.qapp.hermes.RemoveEventTicketsResponse
+ */
+export class RemoveEventTicketsResponse extends Message<RemoveEventTicketsResponse> {
+  /**
+   * @generated from field: bool success = 1;
+   */
+  success = false;
+
+  constructor(data?: PartialMessage<RemoveEventTicketsResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "com.qapp.hermes.RemoveEventTicketsResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "success", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RemoveEventTicketsResponse {
+    return new RemoveEventTicketsResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RemoveEventTicketsResponse {
+    return new RemoveEventTicketsResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RemoveEventTicketsResponse {
+    return new RemoveEventTicketsResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: RemoveEventTicketsResponse | PlainMessage<RemoveEventTicketsResponse> | undefined, b: RemoveEventTicketsResponse | PlainMessage<RemoveEventTicketsResponse> | undefined): boolean {
+    return proto3.util.equals(RemoveEventTicketsResponse, a, b);
+  }
+}
+
+/**
  * @generated from message com.qapp.hermes.GetEventAvailableTicketsResponse
  */
 export class GetEventAvailableTicketsResponse extends Message<GetEventAvailableTicketsResponse> {

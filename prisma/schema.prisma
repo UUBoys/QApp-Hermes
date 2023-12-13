@@ -32,7 +32,7 @@ model PurchasedTickets {
   ticketId  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  ticket    AvailableTickets @relation(fields: [ticketId], references: [id])
+  ticket    AvailableTickets @relation(fields: [ticketId], references: [id], onDelete: Cascade)
 
   @@id([userId, eventId])
   @@schema("qapp_hermes")
