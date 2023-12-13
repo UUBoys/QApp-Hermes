@@ -13,7 +13,7 @@ datasource db {
 }
 
 model AvailableTickets {
-  id        Int      @id @default(autoincrement())
+  id        String      @id @default(uuid())
   eventId   String      @unique
   name      String
   quantity  Int
@@ -26,10 +26,10 @@ model AvailableTickets {
 }
 
 model PurchasedTickets {
-  userId    Int
+  userId    String
   eventId   String
   quantity  Int
-  ticketId  Int
+  ticketId  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   ticket    AvailableTickets @relation(fields: [ticketId], references: [id])
@@ -39,8 +39,8 @@ model PurchasedTickets {
 }
 
 model Credits {
-  id        Int      @id @default(autoincrement())
-  userId    Int      @unique
+  id        String      @id @default(uuid())
+  userId    String      @unique
   amount    Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -49,8 +49,8 @@ model Credits {
 }
 
 model CreditHistory {
-  id            Int      @id @default(autoincrement())
-  userId        Int
+  id            String      @id @default(uuid())
+  userId        String
   changedAmount String
   origin        String
   changedAt     DateTime @default(now())
