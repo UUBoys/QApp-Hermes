@@ -397,6 +397,11 @@ export class UserTicket extends Message<UserTicket> {
    */
   boughtQuantity = 0;
 
+  /**
+   * @generated from field: string createdAt = 7;
+   */
+  createdAt = "";
+
   constructor(data?: PartialMessage<UserTicket>) {
     super();
     proto3.util.initPartial(data, this);
@@ -411,6 +416,7 @@ export class UserTicket extends Message<UserTicket> {
     { no: 4, name: "ticket_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 5, name: "price", kind: "scalar", T: 2 /* ScalarType.FLOAT */ },
     { no: 6, name: "bought_quantity", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 7, name: "createdAt", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UserTicket {
