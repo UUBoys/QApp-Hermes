@@ -15,8 +15,8 @@ export default (router: ConnectRouter) => {
     async topupCredits(request) {
       const { amount, userId } = request;
 
-      if(amount <= 0) {
-          throw new ConnectError("Amount must be positive", Code.InvalidArgument);
+      if (amount <= 0) {
+        throw new ConnectError("Amount must be positive", Code.InvalidArgument);
       }
 
       const old_amount = await prisma.credits.findFirst({
@@ -196,6 +196,7 @@ export default (router: ConnectRouter) => {
           eventId: ticketToPurchase.eventId,
           ticketName: ticketToPurchase.name,
           price: ticketToPurchase.cost,
+          createdAt: ticketToPurchase.createdAt.toISOString(),
           quantity: upserted.quantity,
         },
       };
@@ -226,7 +227,7 @@ export default (router: ConnectRouter) => {
     },
     async getAllTickets() {
       const tickets = await prisma.availableTickets.findMany();
-      
+
       return {
         tickets: tickets.map((ticket) => ({
           id: ticket.id,
@@ -247,6 +248,7 @@ export default (router: ConnectRouter) => {
           userId: true,
           eventId: true,
           quantity: true,
+          createdAt: true,
           ticket: {
             select: {
               name: true,
@@ -254,7 +256,7 @@ export default (router: ConnectRouter) => {
               id: true,
             },
           },
-        }
+        },
       });
 
       if (!userTickets) {
@@ -267,6 +269,7 @@ export default (router: ConnectRouter) => {
           eventId: ticket.eventId,
           ticketId: ticket.ticket.id,
           ticketName: ticket.ticket.name,
+          createdAt: ticket.createdAt.toISOString(),
           price: ticket.ticket.cost,
           boughtQuantity: ticket.quantity,
         })),
@@ -297,6 +300,6 @@ export default (router: ConnectRouter) => {
       return {
         success: true,
       };
-    }
+    },
   });
 };
